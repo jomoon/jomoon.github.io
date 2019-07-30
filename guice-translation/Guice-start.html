@@ -30,18 +30,18 @@
 
 
 
-<link rel="canonical" href="https://jomoon.github.io/2019/07/28/Guice-start/">
+<link rel="canonical" href="https://jomoon.github.io/guice-translation/Guice-start.html">
 
 
 <meta name="description" content="translation from google/guice and google/guice/bindings 入门怎样通过使用Guice来依赖注入。 入门用依赖注入方法，在其构造器中接受依赖。为构造对象，你需要建造其依赖，但是为了生成这些依赖，你需要生成这些依赖所需依赖，依次类推。所以当你要建造一个对象，你需要建立对象图。 手动建立对象图属于劳动密集型，容易出错，且使得测试变得异常困难。然而，G">
 <meta name="keywords" content="zain,翻译,Spring,guice">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Guice Translation 02">
-<meta property="og:url" content="https://jomoon.github.io/2019/07/28/Guice-start/index.html">
+<meta property="og:url" content="https://jomoon.github.io/guice-translation/Guice-start.html">
 <meta property="og:site_name" content="Zain&#39;s Blog">
 <meta property="og:description" content="translation from google/guice and google/guice/bindings 入门怎样通过使用Guice来依赖注入。 入门用依赖注入方法，在其构造器中接受依赖。为构造对象，你需要建造其依赖，但是为了生成这些依赖，你需要生成这些依赖所需依赖，依次类推。所以当你要建造一个对象，你需要建立对象图。 手动建立对象图属于劳动密集型，容易出错，且使得测试变得异常困难。然而，G">
 <meta property="og:locale" content="chinese">
-<meta property="og:updated_time" content="2019-07-28T07:18:33.949Z">
+<meta property="og:updated_time" content="2019-07-30T11:29:33.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Guice Translation 02">
 <meta name="twitter:description" content="translation from google/guice and google/guice/bindings 入门怎样通过使用Guice来依赖注入。 入门用依赖注入方法，在其构造器中接受依赖。为构造对象，你需要建造其依赖，但是为了生成这些依赖，你需要生成这些依赖所需依赖，依次类推。所以当你要建造一个对象，你需要建立对象图。 手动建立对象图属于劳动密集型，容易出错，且使得测试变得异常困难。然而，G">
@@ -110,25 +110,14 @@
       <div id="content">
         
     <div id="primary">
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          Guice Translation 02
-        
-      </h1>
-
-      <time class="post-time">
-          Jul 28 2019
-      </time>
-    </header>
-
-
-
-    
+        <article class="post">
+            <header class="post-header">
+                <h1 class="post-title">
+                    Guice Translation 02
+                </h1>
+            </header>
             <div class="post-content">
-            <p>translation from <a href="https://github.com/google/guice/wiki/GettingStarted" target="_blank" rel="noopener">google/guice</a> and <a href="https://github.com/google/guice/wiki/Bindings" target="_blank" rel="noopener">google/guice/bindings</a></p>
+                <p>translation from <a href="https://github.com/google/guice/wiki/GettingStarted" target="_blank" rel="noopener">google/guice</a> and <a href="https://github.com/google/guice/wiki/Bindings" target="_blank" rel="noopener">google/guice/bindings</a></p>
 <h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>怎样通过使用<code>Guice</code>来依赖注入。</p>
 <h3 id="入门-1"><a href="#入门-1" class="headerlink" title="入门"></a>入门</h3><p>用依赖注入方法，在其构造器中接受依赖。为构造对象，你需要建造其依赖，但是为了生成这些依赖，你需要生成这些依赖所需依赖，依次类推。所以当你要建造一个对象，你需要建立对象图。</p>
 <p>手动建立对象图属于劳动密集型，容易出错，且使得测试变得异常困难。然而，<code>Guice</code>可以替代你建立对象图。但首先，<code>Guice</code>需要你去配置你想要的图。</p>
@@ -146,41 +135,7 @@
 <h3 id="更多绑定"><a href="#更多绑定" class="headerlink" title="更多绑定"></a>更多绑定</h3><p>除了明确包含在你创建的injector中绑定关系。当依赖被需要但却不存在时企图去创建一个实时绑定。注入器也包含其他绑定关系的提供者。</p>
 
             </div>
-          
-
-    
-      <footer class="post-footer">
-		
-
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2019/07/28/Guice-Bindings/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Guice Translation Bindings</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
-    
-    
-      <a class="next" href="/2019/07/26/Guice/">
-        <span class="next-text nav-default">Guice Translation</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-        
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-      </footer>
-    
-  </article>
-
+        </article>
     </div>
 
       </div>

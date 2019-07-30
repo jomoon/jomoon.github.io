@@ -30,18 +30,18 @@
 
 
 
-<link rel="canonical" href="https://jomoon.github.io/2019/07/26/Guice/">
+<link rel="canonical" href="https://jomoon.github.io/guice-translation/Guice-motivation.html">
 
 
 <meta name="description" content="translation from google/guice 动机动机在应用开发的时候，将所有的实例写在一起是最无聊的一部分。其实有多种方式将数据，服务，类和其他接在一起。为了对比这些方式，我们写了披萨订单网站的账单代码。123456789101112 public interface BillingService &amp;#123;/** * Attempts to charge the order t">
 <meta name="keywords" content="zain,翻译,Spring,guice">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Guice Translation">
-<meta property="og:url" content="https://jomoon.github.io/2019/07/26/Guice/index.html">
+<meta property="og:url" content="https://jomoon.github.io/guice-translation/Guice-motivation.html">
 <meta property="og:site_name" content="Zain&#39;s Blog">
 <meta property="og:description" content="translation from google/guice 动机动机在应用开发的时候，将所有的实例写在一起是最无聊的一部分。其实有多种方式将数据，服务，类和其他接在一起。为了对比这些方式，我们写了披萨订单网站的账单代码。123456789101112 public interface BillingService &amp;#123;/** * Attempts to charge the order t">
 <meta property="og:locale" content="chinese">
-<meta property="og:updated_time" content="2019-07-27T10:40:46.381Z">
+<meta property="og:updated_time" content="2019-07-30T11:29:33.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Guice Translation">
 <meta name="twitter:description" content="translation from google/guice 动机动机在应用开发的时候，将所有的实例写在一起是最无聊的一部分。其实有多种方式将数据，服务，类和其他接在一起。为了对比这些方式，我们写了披萨订单网站的账单代码。123456789101112 public interface BillingService &amp;#123;/** * Attempts to charge the order t">
@@ -110,25 +110,14 @@
       <div id="content">
         
     <div id="primary">
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          Guice Translation
-        
-      </h1>
-
-      <time class="post-time">
-          Jul 26 2019
-      </time>
-    </header>
-
-
-
-    
+        <article class="post">
+            <header class="post-header">
+                <h1 class="post-title">
+                    Guice Translation
+                </h1>
+            </header>
             <div class="post-content">
-            <p>translation from <a href="https://github.com/google/guice/wiki/Motivation" target="_blank" rel="noopener">google/guice</a></p>
+                <p>translation from <a href="https://github.com/google/guice/wiki/Motivation" target="_blank" rel="noopener">google/guice</a></p>
 <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><h3 id="动机-1"><a href="#动机-1" class="headerlink" title="动机"></a>动机</h3><p>在应用开发的时候，将所有的实例写在一起是最无聊的一部分。其实有多种方式将数据，服务，类和其他接在一起。为了对比这些方式，我们写了披萨订单网站的账单代码。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BillingService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Attempts to charge the order to the credit card. Both successful and</span></span><br><span class="line"><span class="comment"> * failed transactions will be recorded.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a receipt of the transaction. If the charge was successful, the</span></span><br><span class="line"><span class="comment"> *      receipt will be successful. Otherwise, the receipt will contain a</span></span><br><span class="line"><span class="comment"> *      decline note describing why the charge failed.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">Receipt <span class="title">chargeOrder</span><span class="params">(PizzaOrder order, CreditCard creditCard)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>随着接口的实现，我们要写为我们的代码写测试类，在这些测试中，我们需要<code>FakeCreditCardProcessor</code>(假的信用卡过程)来避免消费了真实的信用卡！</p>
 <h3 id="直接构造器调用"><a href="#直接构造器调用" class="headerlink" title="直接构造器调用"></a>直接构造器调用</h3><p>这里就是我们直接<code>new</code>信用卡过程实例和交易记录的代码，如下：</p>
@@ -159,41 +148,7 @@
 <p><a href="https://github.com/google/guice/wiki/GettingStarted" target="_blank" rel="noopener">开始</a>解释其如何工作。</p>
 
             </div>
-          
-
-    
-      <footer class="post-footer">
-		
-
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2019/07/28/Guice-start/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Guice Translation 02</span>
-        <span class="prev-text nav-mobile">Prev</span>
-      </a>
-    
-    
-      <a class="next" href="/2019/06/04/Thread/">
-        <span class="next-text nav-default">Thread</span>
-        <span class="prev-text nav-mobile">Next</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-        
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-      </footer>
-    
-  </article>
-
+        </article>
     </div>
 
       </div>
