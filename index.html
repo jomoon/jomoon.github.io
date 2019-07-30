@@ -47,10 +47,10 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src class="js-avatar">
+			<img src="/assets/img/touxiang.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Huangjiangjun</a></h1>
+		  <h1 class="header-author"><a href="/">Zain</a></h1>
 		</hgroup>
 		
 
@@ -107,10 +107,10 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src class="js-avatar">
+				<img src="/assets/img/touxiang.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Huangjiangjun</h1>
+			  <h1 class="header-author js-header-author">Zain</h1>
 			</hgroup>
 			
 			
@@ -164,6 +164,11 @@
   
     <article id="post-tranlation-overview" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
     
       <header class="article-header">
         
@@ -231,6 +236,11 @@
   
     <article id="post-Spring-core" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
     
       <header class="article-header">
         
@@ -253,11 +263,8 @@
 <h2 id="核心技术"><a href="#核心技术" class="headerlink" title="核心技术"></a>核心技术</h2><p>这部分参考文档包含了SpringFramework所有必须的技术。</p>
 <p>其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。</p>
 <p>spring通过AspectJ来全面覆盖AOP(最为丰富的 - 在特征方面 - 且是在java企业开发中最成熟的AOP实现）</p>
-<ol>
-<li>控制反转容器</li>
-</ol>
-<p>这一章包含Spring的控制反转(IoC)容器</p>
-<p>1.1  介绍Spring控制反转容器和实例。这一章包含了控制反转(IoC)的实现：Spring框架。控制反转也被人所知为依赖注入(DI)。这是一个凭借对象和其依赖（依赖意味着其他与之一起工作的对象）仅通过构造参数，工厂方法参数，或是构造之后，从工厂返回的实例将属性塞入。容器而后要创建实例时注入了这些所需的依赖。这个过程基本上就是反转(因此其名字叫做，控制反转)实例本身，控制安装或通过使用直接构造器或其他机制例如（Service Locator pattern）定位其依赖。</p>
+<h3 id="控制反转容器"><a href="#控制反转容器" class="headerlink" title="控制反转容器"></a>控制反转容器</h3><p>这一章包含Spring的控制反转(IoC)容器</p>
+<h4 id="介绍Spring控制反转容器和实例"><a href="#介绍Spring控制反转容器和实例" class="headerlink" title="介绍Spring控制反转容器和实例"></a>介绍Spring控制反转容器和实例</h4><p>  介绍Spring控制反转容器和实例。这一章包含了控制反转(IoC)的实现：Spring框架。控制反转也被人所知为依赖注入(DI)。这是一个凭借对象和其依赖（依赖意味着其他与之一起工作的对象）仅通过构造参数，工厂方法参数，或是构造之后，从工厂返回的实例将属性塞入。容器而后要创建实例时注入了这些所需的依赖。这个过程基本上就是反转(因此其名字叫做，控制反转)实例本身，控制安装或通过使用直接构造器或其他机制例如（Service Locator pattern）定位其依赖。</p>
 <p><code>org.springframework.beans</code> 和 <code>org.springframework.context</code> 包是Spring框架控制反转容器的基础包。<code>BeanFactory</code>接口提供了 一个增强的配置文件机制且有能力管理任何类型的对象。<code>ApplicationContext</code> 是<code>BeanFactory</code>其子接口。 他增加了如下：</p>
 <p>与Spring的AOP特征更容易的整合。</p>
 <p>消息资源处理(在于使用国际化时)</p>
@@ -265,14 +272,12 @@
 <p>应用层具体上下文如<code>WebApplicationContext</code>在web应用中。</p>
 <p>简短来说<code>BeanFactory</code>提供了配置框架和基本的功能，而<code>ApplicationContext</code>增加了更多企业具体的功能。<code>ApplicationContext</code>就是一个完整的集合<code>BeanFactory</code>，且作为这一章控制反转的重点描述。想要查看更多信息关于使用<code>BeanFactory</code> ，去看<code>BeanFactory</code>。</p>
 <p>在Spring中，那些作为你应用的核心组成的且被SpringIoC所管理的对象叫做组件。一个组件是之那些被实例化的，装配的或是被Spring IoC容器所管理的。然而，一个组件可能仅仅是你应用中多个对象中的一个。组件们和他们所需要的依赖，都将解析到配置元数据中，给容器使用。</p>
-<p>1.2. 容器总览</p>
-<p><code>org.springframework.context.ApplicationContext</code>接口代表着Spring IoC容器并且对组件的安装，配置，组装负责。容器拥有如何初始化，配置和装配此实例的说明（通过读取配置元数据）。配置元数据表现在XML，Java注解，或是java代码中。这些配置是用作于编排你的应用中实例的相互依赖关系。</p>
+<h4 id="容器总览"><a href="#容器总览" class="headerlink" title="容器总览"></a>容器总览</h4><p><code>org.springframework.context.ApplicationContext</code>接口代表着Spring IoC容器并且对组件的安装，配置，组装负责。容器拥有如何初始化，配置和装配此实例的说明（通过读取配置元数据）。配置元数据表现在XML，Java注解，或是java代码中。这些配置是用作于编排你的应用中实例的相互依赖关系。</p>
 <p><code>ApplicationContext</code> 几个被Spring所提供的实现。在独立运行的应用中，经常使用的是<br><code>ClassPathXmlApplicationContext</code>或是 <code>FileSystemXmlApplicationContext</code>。当XML已经为被定义的配置元数据被格式化过，你可以通过Java注解或是代码容器下指令来明确声明支持一些额外的自定义配置通过少量XML配置。</p>
 <p>在大多数应用场景，明确用户代码不需要安装Spring IoC容器 一个或多个实例。例如：在一个web应用场景下，一个简单的8行左右的模板在Web.xml中描述，就足以满足大多数需求。如果你使用Spring Tool Suite(an Eclipse-powered development environment)，你可以简单的创建这个模板配置通过点点鼠标旧可以完成。</p>
 <p>如下图表，展示了Spring在高层是如何运作的。你的应用类结合配置元数据，在<code>ApplicationContext</code>被创建，初始化后，你就有了一个完全配置可执行系统（应用）。</p>
 <p><img src="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/images/container-magic.png" alt="运作方式"></p>
-<p>1.2.1 配置元数据</p>
-<p>如之前图表所展示的，Spring IoC容器消费配置元数据。配置元数据表示你,作为一个应用开发者,告诉Spring 容器来如何在你的应用中安装配置组装对象.</p>
+<h4 id="配置元数据"><a href="#配置元数据" class="headerlink" title="配置元数据"></a>配置元数据</h4><p>如之前图表所展示的，Spring IoC容器消费配置元数据。配置元数据表示你,作为一个应用开发者,告诉Spring 容器来如何在你的应用中安装配置组装对象.</p>
 <p>配置元数据通常被简单和直接以XML格式,这将是本章节最多传输的概念和Spring控制反转容器的特性.</p>
 <p>基于XML元数据不仅仅是配置元数据的组成.Spring控制反转容器他本身完全脱离了配置元数据的所写配置设计.现今,许多开发者选择使用基于java的配置.</p>
 <p>查看更多信息关于Spring容器所组成的元数据.查看:</p>
@@ -282,8 +287,7 @@
 <p>如下例子展示了XML配置元数据的基本架构</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span>   </span><br><span class="line">        <span class="comment">&lt;!-- id 标签是字符串用作于区分每个实例定义 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- class 标签定义了此组件的类型 使用全名 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 此组件需要的依赖或是配置在这填写 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- collaborators and configuration for this bean go here --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 更多组件定义在此 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>id 标签的值指向协作对象,XML中引用协作对象在此例子中并不会展示,在<code>Dependecies</code>中查看更多信息.</p>
-<p>1.2.2. 实例化容器</p>
-<p>位置路径或是多个位置路径作为<code>ApplicationContext</code>构造函数让容器加载配置元数据从各种个样的额外的资源,例如本地文件系统,或是Java CLASSPATH 等等.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="实例化容器"><a href="#实例化容器" class="headerlink" title="实例化容器"></a>实例化容器</h4><p>位置路径或是多个位置路径作为<code>ApplicationContext</code>构造函数让容器加载配置元数据从各种个样的额外的资源,例如本地文件系统,或是Java CLASSPATH 等等.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>在你学习了关于Spring 控制反转容器后,你可能想知道更多关于Spring的资源抽象(Resources 如中所述),他将会提供一个方便的机制从以URI语法位置定义来读流.特别得说,资源路径用作于构造应用上下文的参数,如描述所说Application Contexts and Resource Paths.</p>
 </blockquote>
@@ -355,6 +359,11 @@
   
     <article id="post-Thread" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
     
       <header class="article-header">
         
@@ -417,6 +426,11 @@
   
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
     
       <header class="article-header">
         
@@ -496,7 +510,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Huangjiangjun
+    		&copy; 2019 Zain
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
