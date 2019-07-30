@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="description" content="Guice Translation Bindings">
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="Zain's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1">
+
+
+
+<link rel="canonical" href="https://jomoon.github.io/2019/07/28/Guice-Bindings/">
+
+
+<meta name="description" content="translation from google/guice ##多种绑定方式 LinkedBindings 链式绑定链式绑定映射了类型和其实现类。如下例子映射了接口TransactionLog和他的实现类DatabaseTransactionLog 123456public class BillingModule extends AbstractModule &amp;#123;  @Override">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Guice Translation Bindings">
+<meta property="og:url" content="https://jomoon.github.io/2019/07/28/Guice-Bindings/index.html">
+<meta property="og:site_name" content="Zain&#39;s Blog">
+<meta property="og:description" content="translation from google/guice ##多种绑定方式 LinkedBindings 链式绑定链式绑定映射了类型和其实现类。如下例子映射了接口TransactionLog和他的实现类DatabaseTransactionLog 123456public class BillingModule extends AbstractModule &amp;#123;  @Override">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-28T07:54:31.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Guice Translation Bindings">
+<meta name="twitter:description" content="translation from google/guice ##多种绑定方式 LinkedBindings 链式绑定链式绑定映射了类型和其实现类。如下例子映射了接口TransactionLog和他的实现类DatabaseTransactionLog 123456public class BillingModule extends AbstractModule &amp;#123;  @Override">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
+
+
+
+<script type="text/javascript">
+  var themeConfig = {
+    fancybox: {
+      enable: false
+    },
+  };
+</script>
+
+
+
+
+  
+
+
+
+    <title> Guice Translation Bindings - Zain's Blog </title>
+  </head>
+
+  <body>
+    <div id="page">
+      <header id="masthead"><div class="site-header-inner">
+    <h1 class="site-title">
+        <a href="/." class="logo">Zain's Blog</a>
+    </h1>
+
+    <nav id="nav-top">
+        
+            <ul id="menu-top" class="nav-top-items">
+                
+                    <li class="menu-item">
+                        <a href="/archives">
+                            
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li class="menu-item">
+                        <a href="/about">
+                            
+                            
+                                About
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        
+  </nav>
+</div>
+
+      </header>
+      <div id="content">
+        
+    <div id="primary">
+        
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Guice Translation Bindings
+        
+      </h1>
+
+      <time class="post-time">
+          Jul 28 2019
+      </time>
+    </header>
+
+
+
+    
+            <div class="post-content">
+            <p>translation from <a href="https://github.com/google/guice/wiki/LinkedBindings" target="_blank" rel="noopener">google/guice</a></p>
+<p>##多种绑定方式</p>
+<h3 id="LinkedBindings-链式绑定"><a href="#LinkedBindings-链式绑定" class="headerlink" title="LinkedBindings 链式绑定"></a>LinkedBindings 链式绑定</h3><p>链式绑定映射了类型和其实现类。如下例子映射了接口<code>TransactionLog</code>和他的实现类<code>DatabaseTransactionLog</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillingModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span> </span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    bind(TransactionLog.class).to(DatabaseTransactionLog.class);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，当你调用injector.getInstance(TransactionLog.class)时，或当<code>injector</code>遇到<code>TransactionLog</code>的依赖时，他将会使用<code>DatabaseTransactionLog</code>。联接了一个类型和他任一子类，例如实现了类或者是继承一个类。你也可以联接具体的类<code>DatabaseTransactionLog</code>和他的子类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind(DatabaseTransactionLog.class).to(MySqlDatabaseTransactionLog.class);</span><br></pre></td></tr></table></figure>
+<p>联接绑定亦可链式的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillingModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span> </span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    bind(TransactionLog.class).to(DatabaseTransactionLog.class);</span><br><span class="line">    bind(DatabaseTransactionLog.class).to(MySqlDatabaseTransactionLog.class);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下，当一个TransactionLog被需要时，注入器会返回一个<code>MySqlDatabaseTransactionLog</code></p>
+<h3 id="注解绑定"><a href="#注解绑定" class="headerlink" title="注解绑定"></a>注解绑定</h3><p>有时候，你会为同一类型想要多绑定。例如你可能同时要一个PayPal信用卡处理器和一个Google 账单处理器。为了使用这种，绑定支持可选择的绑定注解。注解和他的类一起来确定一个绑定关系。这种关系叫做key。</p>
+<p>定义一个绑定注解，需要俩行代码和一些导入。把这些放到他自己的java文件或他所要用的类文件中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> example.pizza;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.inject.BindingAnnotation;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.annotation.RetentionPolicy.RUNTIME;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.annotation.ElementType.PARAMETER;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.annotation.ElementType.FIELD;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.annotation.ElementType.METHOD;</span><br><span class="line"></span><br><span class="line"><span class="meta">@BindingAnnotation</span> <span class="meta">@Target</span>(&#123; FIELD, PARAMETER, METHOD &#125;) <span class="meta">@Retention</span>(RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> PayPal &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>你都不需要去理解所有的元注解，但如果你好奇的话：<br><code>@BindingAnnotation</code> 告诉<code>Guice</code>这个注解是绑定注解。如果你对同一个对象使用多重绑定<code>Guice</code>会出错。<br><code>@Target({FIELD, PARAMETER, METHOD})</code>是对用户好意的。他会防止你无意在在其他地方应用了<code>@PayPal</code></p>
+
+            </div>
+          
+
+    
+      <footer class="post-footer">
+		
+
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/29/Spring-core/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Spring core Translation</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/28/Guice-start/">
+        <span class="next-text nav-default">Guice Translation 02</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </footer>
+    
+  </article>
+
+    </div>
+
+      </div>
+
+      <footer id="colophon"><span class="copyright-year">
+    
+        &copy;
+    
+        2014 -
+    
+    2019
+    <span class="footer-author">Huangjiangjun.</span>
+    <span class="power-by">
+        Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a> and <a class="theme-link" href="https://github.com/frostfan/hexo-theme-polarbear">Polar Bear</a>
+    </span>
+</span>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+
+    <script type="text/javascript" src="/js/src/theme.js?v=1.1"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1"></script>
+
+  </body>
+</html>
