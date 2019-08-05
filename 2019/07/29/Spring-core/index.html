@@ -17,7 +17,7 @@
 <meta property="og:description" content="translation from spring/core 核心技术这部分参考文档包含了SpringFramework所有必须的技术。 其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。 spr">
 <meta property="og:locale" content="chinese">
 <meta property="og:image" content="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/images/container-magic.png">
-<meta property="og:updated_time" content="2019-08-03T15:11:47.511Z">
+<meta property="og:updated_time" content="2019-08-05T16:16:42.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring core Translation">
 <meta name="twitter:description" content="translation from spring/core 核心技术这部分参考文档包含了SpringFramework所有必须的技术。 其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。 spr">
@@ -175,7 +175,7 @@
       <div id="toc-article" class="toc-article">
           <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
           <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心技术"><span class="toc-number">1.</span> <span class="toc-text">核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制反转容器"><span class="toc-number">1.1.</span> <span class="toc-text">控制反转容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍Spring控制反转容器和实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">介绍Spring控制反转容器和实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器总览"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置元数据"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例化容器"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例化容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Groovy实例定义-DSL"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Groovy实例定义 DSL</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Using-the-Container-使用容器"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2.3 Using the Container 使用容器</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心技术"><span class="toc-number">1.</span> <span class="toc-text">核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制反转容器"><span class="toc-number">1.1.</span> <span class="toc-text">控制反转容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍Spring控制反转容器和实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">介绍Spring控制反转容器和实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器总览"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置元数据"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例化容器"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例化容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Groovy实例定义-DSL"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Groovy实例定义 DSL</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Using-the-Container-使用容器"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2.3 Using the Container 使用容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Bean-Overview-组件总览"><span class="toc-number">1.2.</span> <span class="toc-text">1.3 Bean Overview 组件总览</span></a></li></ol></li></ol>
      </div>
      <script type="text/javascript">
       function showToc(){
@@ -260,7 +260,69 @@
 <p>命名空间本身提供导入指令特征。更多超出普通实例定义的配置特性，使用Spring所提供的XML命名空间，例如，<code>context</code>和<code>util</code>命名空间。</p>
 <h5 id="Groovy实例定义-DSL"><a href="#Groovy实例定义-DSL" class="headerlink" title="Groovy实例定义 DSL"></a>Groovy实例定义 DSL</h5><p>作为一个外部配置元数据的进一步例子，实例定义也可以通过<code>Spring’s Groovy Bean Definition DSL</code>来表达。众所周知的Grails 框架，通常配置在’.groovy’文件结构如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">beans &#123;</span><br><span class="line">    dataSource(BasicDataSource) &#123;</span><br><span class="line">        driverClassName = <span class="string">"org.hsqldb.jdbcDriver"</span></span><br><span class="line">        url = <span class="string">"jdbc:hsqldb:mem:grailsDB"</span></span><br><span class="line">        username = <span class="string">"sa"</span></span><br><span class="line">        password = <span class="string">""</span></span><br><span class="line">        settings = [mynew:<span class="string">"setting"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    sessionFactory(SessionFactory) &#123;</span><br><span class="line">        dataSource = dataSource</span><br><span class="line">    &#125;</span><br><span class="line">    myService(MyService) &#123;</span><br><span class="line">        nestedBean = &#123; AnotherBean bean -&gt;</span><br><span class="line">            dataSource = dataSource</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这个配置风格很大程度与XML实例定义相当，甚至都支持Spring XML配置命名空间。此方式也允许通过直接使用<code>importBeans</code>来导入XML实例定义。</p>
-<h4 id="1-2-3-Using-the-Container-使用容器"><a href="#1-2-3-Using-the-Container-使用容器" class="headerlink" title="1.2.3 Using the Container 使用容器"></a>1.2.3 Using the Container 使用容器</h4>
+<h4 id="1-2-3-Using-the-Container-使用容器"><a href="#1-2-3-Using-the-Container-使用容器" class="headerlink" title="1.2.3 Using the Container 使用容器"></a>1.2.3 Using the Container 使用容器</h4><p><code>ApplicationContext</code>是一个有能力维护不同组件及其依赖的高级工厂接口。通过使用方法<code>T getBean(String name, Class&lt;T&gt; requiredType)</code>，你可以重新获取你的组件实例。</p>
+<p><code>ApplicationContext</code>让你可以读取组件定义和有权使用他们，就如下例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create and configure beans</span></span><br><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// retrieve configured instance</span></span><br><span class="line">PetStoreService service = context.getBean(<span class="string">"petStore"</span>, PetStoreService.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// use configured instance</span></span><br><span class="line">List&lt;String&gt; userList = service.getUsernameList();</span><br></pre></td></tr></table></figure></p>
+<p>用Groovy配置，启动起来相似。它有不同的上下文实现（但可以与XML组件定义认为是一致的），如下例子展示的是 Groovy 配置<br><code>ApplicationContext context = new GenericGroovyApplicationContext(&quot;services.groovy&quot;, &quot;daos.groovy&quot;);</code></p>
+<p>最为灵活的变种 <code>GenericApplicationContext</code>和读取委派者结合，例如，通过给XML文件<code>XmlBeanDefinitionReader</code>，就如下例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GenericApplicationContext context = <span class="keyword">new</span> GenericApplicationContext();</span><br><span class="line"><span class="keyword">new</span> XmlBeanDefinitionReader(context).loadBeanDefinitions(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br><span class="line">context.refresh();</span><br></pre></td></tr></table></figure>
+<p>对于Groovy文件，你也可以使用<code>GroovyBeanDefinitionReader</code>，如以下例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GenericApplicationContext context = <span class="keyword">new</span> GenericApplicationContext();</span><br><span class="line"><span class="keyword">new</span> GroovyBeanDefinitionReader(context).loadBeanDefinitions(<span class="string">"services.groovy"</span>, <span class="string">"daos.groovy"</span>);</span><br><span class="line">context.refresh();</span><br></pre></td></tr></table></figure></p>
+<p>你可以在同一个<code>ApplicationContext</code>混合并匹配这样一个读取委派者，从不同的配置资源读取组件定义。</p>
+<p>而后你也可以使用<code>getBean</code>来重新获取组件的实例。<code>ApplicationContext</code>接口有有一些其他方法来获取组件，但理论上，你的应用代码不应使用他们。实际上，你的应用代码根本不应该调用getBean()方法。因此并不需要有任何Spring APIs。例如，Spring整合页面框架提供网站框架组件以依赖注入，例如控制层和JSF-管控的组件，让你通过元数据（例如 自动装配的注解 ）来声明依赖。</p>
+<h3 id="1-3-Bean-Overview-组件总览"><a href="#1-3-Bean-Overview-组件总览" class="headerlink" title="1.3 Bean Overview 组件总览"></a>1.3 Bean Overview 组件总览</h3><p>一个Spring 控制反转容器管理 一个或多个实例。这些组件通过你提供给容器的配置元数据。（例如，以XML<code>&lt;bean/&gt;</code>定义）。</p>
+<p>在容器内部，这些组件定义作为<code>BeanDefinition</code>对象，它包含如下元数据：</p>
+<p>一个明确包名的类名称：通常是：被定义组件的实际实现类。</p>
+<p>组件行为配置元素：它说明了组件应该在容器中如何表现它本身(作用域,生命周期调用等)。</p>
+<p>组件需要其他其引用的组件来进行工作。这些引用也被称为合作或是依赖。</p>
+<p>其他配置设置在新创建的对象-例如：池的大小或是在一个组件中使用的连接数来管理一个连接池。</p>
+<p>这些元数据转化为一系列的属性来组成每个组件定义。如下表格描述了这些属性：</p>
+<p>Table 1. The bean definition</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Property</th>
+<th style="text-align:center">Explained in…​</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Class</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-class" target="_blank" rel="noopener">Instantiating Beans</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Name</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-beanname" target="_blank" rel="noopener">Naming Beans</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Scope</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-scopes" target="_blank" rel="noopener">Bean Scopes</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Constructor arguments</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-collaborators" target="_blank" rel="noopener">Dependency Injection</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Properties</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-collaborators" target="_blank" rel="noopener">Dependency Injection</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Autowiring mode</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-autowire" target="_blank" rel="noopener">Autowiring Collaborators</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Lazy initialization mode</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-lazy-init" target="_blank" rel="noopener">Lazy-initialized Beans</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Initialization method</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-lifecycle-initializingbean" target="_blank" rel="noopener">Initialization Callbacks</a></td>
+</tr>
+<tr>
+<td style="text-align:center">Destruction method</td>
+<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-lifecycle-disposablebean" target="_blank" rel="noopener">Destruction Callbacks</a></td>
+</tr>
+</tbody>
+</table>
+
       
 
       
@@ -385,7 +447,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心技术"><span class="toc-number">1.</span> <span class="toc-text">核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制反转容器"><span class="toc-number">1.1.</span> <span class="toc-text">控制反转容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍Spring控制反转容器和实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">介绍Spring控制反转容器和实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器总览"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置元数据"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例化容器"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例化容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Groovy实例定义-DSL"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Groovy实例定义 DSL</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Using-the-Container-使用容器"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2.3 Using the Container 使用容器</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心技术"><span class="toc-number">1.</span> <span class="toc-text">核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制反转容器"><span class="toc-number">1.1.</span> <span class="toc-text">控制反转容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍Spring控制反转容器和实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">介绍Spring控制反转容器和实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器总览"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置元数据"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例化容器"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例化容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Groovy实例定义-DSL"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Groovy实例定义 DSL</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Using-the-Container-使用容器"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2.3 Using the Container 使用容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Bean-Overview-组件总览"><span class="toc-number">1.2.</span> <span class="toc-text">1.3 Bean Overview 组件总览</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
