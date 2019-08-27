@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jomoon.github.io">
-  <title>Spring core Translation | Zain&#39;s Blog</title>
+  <title>Category: tips | Zain&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="translation from spring/core 核心技术这部分参考文档包含了SpringFramework所有必须的技术。 其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。 spr">
+  <meta name="description" content="用于翻译一些官方文档">
 <meta name="keywords" content="zain,翻译,Spring,guice">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring core Translation">
-<meta property="og:url" content="https://jomoon.github.io/2019/07/29/Spring-core/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zain&#39;s Blog">
+<meta property="og:url" content="https://jomoon.github.io/categories/tips/index.html">
 <meta property="og:site_name" content="Zain&#39;s Blog">
-<meta property="og:description" content="translation from spring/core 核心技术这部分参考文档包含了SpringFramework所有必须的技术。 其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。 spr">
+<meta property="og:description" content="用于翻译一些官方文档">
 <meta property="og:locale" content="chinese">
-<meta property="og:image" content="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/images/container-magic.png">
-<meta property="og:updated_time" content="2019-08-09T01:08:40.287Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring core Translation">
-<meta name="twitter:description" content="translation from spring/core 核心技术这部分参考文档包含了SpringFramework所有必须的技术。 其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。 spr">
-<meta name="twitter:image" content="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/images/container-magic.png">
+<meta name="twitter:title" content="Zain&#39;s Blog">
+<meta name="twitter:description" content="用于翻译一些官方文档">
   
     <link rel="alternative" href="/atom.xml" title="Zain&#39;s Blog" type="application/atom+xml">
   
@@ -163,314 +160,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring-core" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-
-    <!-- 目录内容 -->
-    
-      <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-      <span class="btn-bg"></span>
-      <span class="btn-text">文章导航</span>
-      </p>
-      <div id="toc-article" class="toc-article">
-          <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-          <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心技术"><span class="toc-number">1.</span> <span class="toc-text">核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制反转容器"><span class="toc-number">1.1.</span> <span class="toc-text">控制反转容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍Spring控制反转容器和实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">介绍Spring控制反转容器和实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器总览"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置元数据"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例化容器"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例化容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Groovy实例定义-DSL"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Groovy实例定义 DSL</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Using-the-Container-使用容器"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2.3 Using the Container 使用容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Bean-Overview-组件总览"><span class="toc-number">1.2.</span> <span class="toc-text">1.3 Bean Overview 组件总览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-Naming-Beans-命名组件"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.3.1 Naming Beans 命名组件</span></a></li></ol></li></ol></li></ol>
-     </div>
-     <script type="text/javascript">
-      function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-          };
-      function showBtn(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:none");
-          show_toc_btn.setAttribute("style","display:block");
-          };
-     </script>
-       
-  <!-- 目录内容结束 -->
-
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Spring core Translation
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/08/27/tips/" class="archive-article-date">
+  	<time datetime="2019-08-27T07:02:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/08/27/tips/">tips</a>
     </h1>
   
 
-        
-        <a href="/2019/07/29/Spring-core/" class="archive-article-date">
-  	<time datetime="2019-07-29T05:59:21.984Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>translation from <a href="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/core.html#spring-core" target="_blank" rel="noopener">spring/core</a></p>
-<h2 id="核心技术"><a href="#核心技术" class="headerlink" title="核心技术"></a>核心技术</h2><p>这部分参考文档包含了SpringFramework所有必须的技术。</p>
-<p>其中最重要的是SpringFramework的IOC控制反转。Spring Framework的控制反转容器被全覆盖的Spring AOP技术所覆盖。SpringFramework有他自己的切面框架，这个切面框架易于理解且在java企业开发中有80%语法糖。</p>
-<p>spring通过AspectJ来全面覆盖AOP(最为丰富的 - 在特征方面 - 且是在java企业开发中最成熟的AOP实现）</p>
-<h3 id="控制反转容器"><a href="#控制反转容器" class="headerlink" title="控制反转容器"></a>控制反转容器</h3><p>这一章包含Spring的控制反转(IoC)容器</p>
-<h4 id="介绍Spring控制反转容器和实例"><a href="#介绍Spring控制反转容器和实例" class="headerlink" title="介绍Spring控制反转容器和实例"></a>介绍Spring控制反转容器和实例</h4><p>  介绍Spring控制反转容器和实例。这一章包含了控制反转(IoC)的实现：Spring框架。控制反转也被人所知为依赖注入(DI)。这是一个凭借对象和其依赖（依赖意味着其他与之一起工作的对象）仅通过构造参数，工厂方法参数，或是构造之后，从工厂返回的实例将属性塞入。容器而后要创建实例时注入了这些所需的依赖。这个过程基本上就是反转(因此其名字叫做，控制反转)实例本身，控制安装或通过使用直接构造器或其他机制例如（Service Locator pattern）定位其依赖。</p>
-<p><code>org.springframework.beans</code> 和 <code>org.springframework.context</code> 包是Spring框架控制反转容器的基础包。<code>BeanFactory</code>接口提供了 一个增强的配置文件机制且有能力管理任何类型的对象。<code>ApplicationContext</code> 是<code>BeanFactory</code>其子接口。 他增加了如下：</p>
-<p>与Spring的AOP特征更容易的整合。</p>
-<p>消息资源处理(在于使用国际化时)</p>
-<p>事件发布</p>
-<p>应用层具体上下文如<code>WebApplicationContext</code>在web应用中。</p>
-<p>简短来说<code>BeanFactory</code>提供了配置框架和基本的功能，而<code>ApplicationContext</code>增加了更多企业具体的功能。<code>ApplicationContext</code>就是一个完整的集合<code>BeanFactory</code>，且作为这一章控制反转的重点描述。想要查看更多信息关于使用<code>BeanFactory</code> ，去看<code>BeanFactory</code>。</p>
-<p>在Spring中，那些作为你应用的核心组成的且被SpringIoC所管理的对象叫做组件。一个组件是之那些被实例化的，装配的或是被Spring IoC容器所管理的。然而，一个组件可能仅仅是你应用中多个对象中的一个。组件们和他们所需要的依赖，都将解析到配置元数据中，给容器使用。</p>
-<h4 id="容器总览"><a href="#容器总览" class="headerlink" title="容器总览"></a>容器总览</h4><p><code>org.springframework.context.ApplicationContext</code>接口代表着Spring IoC容器并且对组件的安装，配置，组装负责。容器拥有如何初始化，配置和装配此实例的说明（通过读取配置元数据）。配置元数据表现在XML，Java注解，或是java代码中。这些配置是用作于编排你的应用中实例的相互依赖关系。</p>
-<p><code>ApplicationContext</code> 几个被Spring所提供的实现。在独立运行的应用中，经常使用的是<br><code>ClassPathXmlApplicationContext</code>或是 <code>FileSystemXmlApplicationContext</code>。当XML已经为被定义的配置元数据被格式化过，你可以通过Java注解或是代码容器下指令来明确声明支持一些额外的自定义配置通过少量XML配置。</p>
-<p>在大多数应用场景，明确用户代码不需要安装Spring IoC容器 一个或多个实例。例如：在一个web应用场景下，一个简单的8行左右的模板在Web.xml中描述，就足以满足大多数需求。如果你使用Spring Tool Suite(an Eclipse-powered development environment)，你可以简单的创建这个模板配置通过点点鼠标旧可以完成。</p>
-<p>如下图表，展示了Spring在高层是如何运作的。你的应用类结合配置元数据，在<code>ApplicationContext</code>被创建，初始化后，你就有了一个完全配置可执行系统（应用）。</p>
-<p><img src="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/images/container-magic.png" alt="运作方式"></p>
-<h4 id="配置元数据"><a href="#配置元数据" class="headerlink" title="配置元数据"></a>配置元数据</h4><p>如之前图表所展示的，Spring IoC容器消费配置元数据。配置元数据表示你,作为一个应用开发者,告诉Spring 容器来如何在你的应用中安装配置组装对象.</p>
-<p>配置元数据通常被简单和直接以XML格式,这将是本章节最多传输的概念和Spring控制反转容器的特性.</p>
-<p>基于XML元数据不仅仅是配置元数据的组成.Spring控制反转容器他本身完全脱离了配置元数据的所写配置设计.现今,许多开发者选择使用基于java的配置.</p>
-<p>查看更多信息关于Spring容器所组成的元数据.查看:</p>
-<p>· 基于注解的配置:Spring2.5开始支持基于注解的配置元数据.<br>· 基于Java配置: 从Spring 3.0开始,许多基于java配置的项目成为Spring框架的核心.因而,你可以自行定义实例通过java类而非XML文件.为使用这些新特性,请查看 <code>@Configuration</code>,<code>@Bean</code>, <code>@Import</code>, <code>@DependsOn</code> 这些注解.</p>
-<p>Spring配置认为至少一个或常常不仅仅一个组件定义都被Spring容器所管理.基于XML文件的配置通过使用<code>&lt;beans/&gt;</code>(处于顶层元素)的子元素:<code>&lt;bean/&gt;</code>来配置.java配置通常使用在存有<code>@Configuration</code>的注解的类的<code>@Bean</code>的注解方法来进行配置.</p>
-<p>这些组件定义与你所需装配的应用的对象对应.通常来说,你定义的业务层对象,data access objects (DAOs),显示层如 Structs <code>Action</code>实例,基础对象例如 Hibernate的事务工厂,JMS队列 等等.通常来说,在容器中,并不会配置有细粒度的域对象,因为这些责任均属于DAOs层或业务逻辑来创建域对象.然而,你可以通过使用Spring整合的AspectJ来配置对象(那些在IoC容器之外创建的对象) 查看 Using <a href="https://docs.spring.io/spring/docs/5.1.8.RELEASE/spring-framework-reference/core.html#aop-atconfigurable" target="_blank" rel="noopener">AspectJ to dependency-inject domain objects with Spring</a></p>
-<p>如下例子展示了XML配置元数据的基本架构</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span>   </span><br><span class="line">        <span class="comment">&lt;!-- id 标签是字符串用作于区分每个实例定义 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- class 标签定义了此组件的类型 使用全名 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 此组件需要的依赖或是配置在这填写 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"..."</span> <span class="attr">class</span>=<span class="string">"..."</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- collaborators and configuration for this bean go here --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 更多组件定义在此 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>id 标签的值指向协作对象,XML中引用协作对象在此例子中并不会展示,在<code>Dependecies</code>中查看更多信息.</p>
-<h4 id="实例化容器"><a href="#实例化容器" class="headerlink" title="实例化容器"></a>实例化容器</h4><p>位置路径或是多个位置路径作为<code>ApplicationContext</code>构造函数让容器加载配置元数据从各种个样的额外的资源,例如本地文件系统,或是Java CLASSPATH 等等.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在你学习了关于Spring 控制反转容器后,你可能想知道更多关于Spring的资源抽象(Resources 如中所述),他将会提供一个方便的机制从以URI语法位置定义来读流.特别得说,资源路径用作于构造应用上下文的参数,如描述所说Application Contexts and Resource Paths.</p>
-</blockquote>
-<p>如下例子展示了业务层对象配置文件:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 业务们 --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"petStore"</span> <span class="attr">class</span>=<span class="string">"org.springframework.samples.jpetstore.services.PetStoreServiceImpl"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"accountDao"</span> <span class="attr">ref</span>=<span class="string">"accountDao"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"itemDao"</span> <span class="attr">ref</span>=<span class="string">"itemDao"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 额外的协作对象和配置在此增加 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- more bean definitions for services go here --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 更多的组件定义在这里写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>如下例子展示了数据接入对象 daos.xml 文件:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"accountDao"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">"org.springframework.samples.jpetstore.dao.jpa.JpaAccountDao"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 额外的协作对象和配置在此增加 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"itemDao"</span> <span class="attr">class</span>=<span class="string">"org.springframework.samples.jpetstore.dao.jpa.JpaItemDao"</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- 额外的协作对象和配置在此增加 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 更多的组件定义在这里写 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在之前的例子中,业务层由<code>PetStoreServiceImpl</code>类和两个DAO类型分别为<code>JpaAccountDao</code> 和 <code>JpaItemDao</code> (基于JPA Object-Relational Mapping 标准). 属性名称元素引用了java组件的属性名称,<code>ref</code>元素指向另一个组件定义的名称.这个id 和 ref 之间元素的关系表现了协作对象的依赖关系.想查看更多相关配置对象依赖的信息,请查看Dependencies.</p>
-<p>编排基于XML的配置元数据<br>多个XML文件拥有组件定义十分有用.通常来说,每个独立的XML配置文件在你的架构中表示一个逻辑层面或模块.</p>
-<p>你可以使用Application context构造器加载从XML片段中加载组件定义.此构造器有多种资源路径,就如同上一节所展示的.另外,使用一个或多个<code>&lt;import/&gt;</code>的元素来从其他文件中加载组件定义.如下例子告诉你如何去做:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"services.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"resources/messageSource.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"/resources/themeSource.xml"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"bean1"</span> <span class="attr">class</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"bean2"</span> <span class="attr">class</span>=<span class="string">"..."</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>之前的例子中,外部的组件定义从三个文件中被加载 <code>services.xml</code>, <code>messageSource.xml</code> 和 <code>themeSource.xml</code>.所有文件都是以当前正在导入的文件所相关的,所以 <code>services.xml</code>必须与当前导入文件的处于相同的文件夹中或是在classPath中,而messageSource.xml 和 themeSource.xml 必须在导入文件的资源文件位置下面.就如你所能看到的,将会忽略最前面的”/“.然而给的这些路径都是相对路径,最好不要使用“/”.文件所要导入的内容,包括最高层的<code>&lt;bean/&gt;</code>元素,必须是有效的XML实例定义,依据Spring模式.</p>
-<blockquote>
-<p>  虽然可以但是不建议,引用文件通过使用相对路径“../”,这样做将会使你的应用依赖于一个外部文件.尤其不建议你使用Classpath: URLS (例如:classpath:../services.xml),当运行时解析器选择一个“最为相近的”类路径根而后找到了父类的文件夹中.类配置的改变可能会导致你选择了错的文件夹.</p>
-</blockquote>
-<p>你可以总使用全路径来做而非使用相对路径,例如(file:C:/config/services.xml 或是 classpath:/config/services.xml),要注意你的应用和一些绝对路径下的文件产生了耦合,通常使用”${…​}” 占位符来间接性的使用绝对路径,通过jvm解析系统变量.</p>
-<p>命名空间本身提供导入指令特征。更多超出普通实例定义的配置特性，使用Spring所提供的XML命名空间，例如，<code>context</code>和<code>util</code>命名空间。</p>
-<h5 id="Groovy实例定义-DSL"><a href="#Groovy实例定义-DSL" class="headerlink" title="Groovy实例定义 DSL"></a>Groovy实例定义 DSL</h5><p>作为一个外部配置元数据的进一步例子，实例定义也可以通过<code>Spring’s Groovy Bean Definition DSL</code>来表达。众所周知的Grails 框架，通常配置在’.groovy’文件结构如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">beans &#123;</span><br><span class="line">    dataSource(BasicDataSource) &#123;</span><br><span class="line">        driverClassName = <span class="string">"org.hsqldb.jdbcDriver"</span></span><br><span class="line">        url = <span class="string">"jdbc:hsqldb:mem:grailsDB"</span></span><br><span class="line">        username = <span class="string">"sa"</span></span><br><span class="line">        password = <span class="string">""</span></span><br><span class="line">        settings = [mynew:<span class="string">"setting"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    sessionFactory(SessionFactory) &#123;</span><br><span class="line">        dataSource = dataSource</span><br><span class="line">    &#125;</span><br><span class="line">    myService(MyService) &#123;</span><br><span class="line">        nestedBean = &#123; AnotherBean bean -&gt;</span><br><span class="line">            dataSource = dataSource</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这个配置风格很大程度与XML实例定义相当，甚至都支持Spring XML配置命名空间。此方式也允许通过直接使用<code>importBeans</code>来导入XML实例定义。</p>
-<h4 id="1-2-3-Using-the-Container-使用容器"><a href="#1-2-3-Using-the-Container-使用容器" class="headerlink" title="1.2.3 Using the Container 使用容器"></a>1.2.3 Using the Container 使用容器</h4><p><code>ApplicationContext</code>是一个有能力维护不同组件及其依赖的高级工厂接口。通过使用方法<code>T getBean(String name, Class&lt;T&gt; requiredType)</code>，你可以重新获取你的组件实例。</p>
-<p><code>ApplicationContext</code>让你可以读取组件定义和有权使用他们，就如下例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create and configure beans</span></span><br><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// retrieve configured instance</span></span><br><span class="line">PetStoreService service = context.getBean(<span class="string">"petStore"</span>, PetStoreService.class);</span><br><span class="line"></span><br><span class="line"><span class="comment">// use configured instance</span></span><br><span class="line">List&lt;String&gt; userList = service.getUsernameList();</span><br></pre></td></tr></table></figure></p>
-<p>用Groovy配置，启动起来相似。它有不同的上下文实现（但可以与XML组件定义认为是一致的），如下例子展示的是 Groovy 配置<br><code>ApplicationContext context = new GenericGroovyApplicationContext(&quot;services.groovy&quot;, &quot;daos.groovy&quot;);</code></p>
-<p>最为灵活的变种 <code>GenericApplicationContext</code>和读取委派者结合，例如，通过给XML文件<code>XmlBeanDefinitionReader</code>，就如下例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GenericApplicationContext context = <span class="keyword">new</span> GenericApplicationContext();</span><br><span class="line"><span class="keyword">new</span> XmlBeanDefinitionReader(context).loadBeanDefinitions(<span class="string">"services.xml"</span>, <span class="string">"daos.xml"</span>);</span><br><span class="line">context.refresh();</span><br></pre></td></tr></table></figure>
-<p>对于Groovy文件，你也可以使用<code>GroovyBeanDefinitionReader</code>，如以下例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GenericApplicationContext context = <span class="keyword">new</span> GenericApplicationContext();</span><br><span class="line"><span class="keyword">new</span> GroovyBeanDefinitionReader(context).loadBeanDefinitions(<span class="string">"services.groovy"</span>, <span class="string">"daos.groovy"</span>);</span><br><span class="line">context.refresh();</span><br></pre></td></tr></table></figure></p>
-<p>你可以在同一个<code>ApplicationContext</code>混合并匹配这样一个读取委派者，从不同的配置资源读取组件定义。</p>
-<p>而后你也可以使用<code>getBean</code>来重新获取组件的实例。<code>ApplicationContext</code>接口有有一些其他方法来获取组件，但理论上，你的应用代码不应使用他们。实际上，你的应用代码根本不应该调用getBean()方法。因此并不需要有任何Spring APIs。例如，Spring整合页面框架提供网站框架组件以依赖注入，例如控制层和JSF-管控的组件，让你通过元数据（例如 自动装配的注解 ）来声明依赖。</p>
-<h3 id="1-3-Bean-Overview-组件总览"><a href="#1-3-Bean-Overview-组件总览" class="headerlink" title="1.3 Bean Overview 组件总览"></a>1.3 Bean Overview 组件总览</h3><p>一个Spring 控制反转容器管理 一个或多个实例。这些组件通过你提供给容器的配置元数据。（例如，以XML<code>&lt;bean/&gt;</code>定义）。</p>
-<p>在容器内部，这些组件定义作为<code>BeanDefinition</code>对象，它包含如下元数据：</p>
-<p>一个明确包名的类名称：通常是：被定义组件的实际实现类。</p>
-<p>组件行为配置元素：它说明了组件应该在容器中如何表现它本身(作用域,生命周期调用等)。</p>
-<p>组件需要其他其引用的组件来进行工作。这些引用也被称为合作或是依赖。</p>
-<p>其他配置设置在新创建的对象-例如：池的大小或是在一个组件中使用的连接数来管理一个连接池。</p>
-<p>这些元数据转化为一系列的属性来组成每个组件定义。如下表格描述了这些属性：</p>
-<p>Table 1. The bean definition</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Property</th>
-<th style="text-align:center">Explained in…​</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Class</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-class" target="_blank" rel="noopener">Instantiating Beans</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Name</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-beanname" target="_blank" rel="noopener">Naming Beans</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Scope</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-scopes" target="_blank" rel="noopener">Bean Scopes</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Constructor arguments</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-collaborators" target="_blank" rel="noopener">Dependency Injection</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Properties</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-collaborators" target="_blank" rel="noopener">Dependency Injection</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Autowiring mode</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-autowire" target="_blank" rel="noopener">Autowiring Collaborators</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Lazy initialization mode</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-lazy-init" target="_blank" rel="noopener">Lazy-initialized Beans</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Initialization method</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-lifecycle-initializingbean" target="_blank" rel="noopener">Initialization Callbacks</a></td>
-</tr>
-<tr>
-<td style="text-align:center">Destruction method</td>
-<td style="text-align:center"><a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-lifecycle-disposablebean" target="_blank" rel="noopener">Destruction Callbacks</a></td>
-</tr>
-</tbody>
-</table>
-<p>除了组件定义包含了怎样去创建指定的组件，<code>ApplicationContext</code>实现类也允许用户自身创建的容器注册。通过应用上下文的组件工厂的<code>getBeanFactory</code>方法，来返回组件工厂<code>DefaultListableBeanFactory</code>实现。<code>DefaultListableBeanFactory</code>通过<code>registerSingleton(..)</code>方法来支持这个注册。然而，通常来说应用通过常规组件定义元数据来独自工作。</p>
-<blockquote>
-<p>组件元数据手工地提供有单一实例需要注册的越早越好，为了让容器在自动装配和内省步骤中更好的推断。当重载已存在的元数据和存在的单例实例来支持一些度和在运行时注册新的组件（同时保有接触工厂的权利）是非官方支持的。可能会引起多线程的异常，在组件容器中存在不一致的状态。</p>
-</blockquote>
-<h4 id="1-3-1-Naming-Beans-命名组件"><a href="#1-3-1-Naming-Beans-命名组件" class="headerlink" title="1.3.1 Naming Beans 命名组件"></a>1.3.1 Naming Beans 命名组件</h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
+        <div class="article-info info-on-right">
+          
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/spring-core//" class="article-tag-list-link color2">spring core</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/spring-core/translation//" class="article-tag-list-link color2">translation</a>
+        			<a href="/categories/tips//" class="article-tag-list-link color5">tips</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://jomoon.github.io/2019/07/29/Spring-core/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/07/30/tranlation-overview/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          翻译总览
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/06/04/Thread/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Thread</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心技术"><span class="toc-number">1.</span> <span class="toc-text">核心技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#控制反转容器"><span class="toc-number">1.1.</span> <span class="toc-text">控制反转容器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍Spring控制反转容器和实例"><span class="toc-number">1.1.1.</span> <span class="toc-text">介绍Spring控制反转容器和实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容器总览"><span class="toc-number">1.1.2.</span> <span class="toc-text">容器总览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置元数据"><span class="toc-number">1.1.3.</span> <span class="toc-text">配置元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例化容器"><span class="toc-number">1.1.4.</span> <span class="toc-text">实例化容器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Groovy实例定义-DSL"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">Groovy实例定义 DSL</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Using-the-Container-使用容器"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.2.3 Using the Container 使用容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Bean-Overview-组件总览"><span class="toc-number">1.2.</span> <span class="toc-text">1.3 Bean Overview 组件总览</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-Naming-Beans-命名组件"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.3.1 Naming Beans 命名组件</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -493,10 +236,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
-		isCategory: false,
+		isCategory: true,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
