@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://jomoon.github.io">
-  <title>Category: spring | Zain&#39;s Blog</title>
+  <title>howto-database-initialization | Zain&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用于翻译一些官方文档">
+  <meta name="description" content="translation from springboot/reference 85. Database Initialization 数据库初始化SQL数据库初始化可以根据你的不同需求来初始化。自然，你可以手工操作，提供数据库以分离的手段。建议你使用简单的机制来生成。 85.1 Initialize a Database Using JPA 通过JPA来初始化数据库JPA有DDL语句生成的特征，这些">
 <meta name="keywords" content="zain,翻译,Spring,guice">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zain&#39;s Blog">
-<meta property="og:url" content="https://jomoon.github.io/categories/logging/spring/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="howto-database-initialization">
+<meta property="og:url" content="https://jomoon.github.io/2019/08/28/howto-database-initialization/index.html">
 <meta property="og:site_name" content="Zain&#39;s Blog">
-<meta property="og:description" content="用于翻译一些官方文档">
+<meta property="og:description" content="translation from springboot/reference 85. Database Initialization 数据库初始化SQL数据库初始化可以根据你的不同需求来初始化。自然，你可以手工操作，提供数据库以分离的手段。建议你使用简单的机制来生成。 85.1 Initialize a Database Using JPA 通过JPA来初始化数据库JPA有DDL语句生成的特征，这些">
 <meta property="og:locale" content="chinese">
+<meta property="og:updated_time" content="2019-08-28T08:05:33.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zain&#39;s Blog">
-<meta name="twitter:description" content="用于翻译一些官方文档">
+<meta name="twitter:title" content="howto-database-initialization">
+<meta name="twitter:description" content="translation from springboot/reference 85. Database Initialization 数据库初始化SQL数据库初始化可以根据你的不同需求来初始化。自然，你可以手工操作，提供数据库以分离的手段。建议你使用简单的机制来生成。 85.1 Initialize a Database Using JPA 通过JPA来初始化数据库JPA有DDL语句生成的特征，这些">
   
     <link rel="alternative" href="/atom.xml" title="Zain&#39;s Blog" type="application/atom+xml">
   
@@ -154,68 +155,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-howto-database-initialization" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/27/howto-logging/" class="archive-article-date">
-  	<time datetime="2019-08-27T02:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/27/howto-logging/">howto-logging</a>
+    <h1 class="article-title" itemprop="name">
+      howto-database-initialization
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2019/08/28/howto-database-initialization/" class="archive-article-date">
+  	<time datetime="2019-08-28T01:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>translation from <a href="https://docs.spring.io/spring-boot/docs/2.1.7.RELEASE/reference/html/howto-database-initialization.html" target="_blank" rel="noopener">springboot/reference</a></p>
+<h1 id="85-Database-Initialization-数据库初始化"><a href="#85-Database-Initialization-数据库初始化" class="headerlink" title="85. Database Initialization 数据库初始化"></a>85. Database Initialization 数据库初始化</h1><p>SQL数据库初始化可以根据你的不同需求来初始化。自然，你可以手工操作，提供数据库以分离的手段。建议你使用简单的机制来生成。</p>
+<h2 id="85-1-Initialize-a-Database-Using-JPA-通过JPA来初始化数据库"><a href="#85-1-Initialize-a-Database-Using-JPA-通过JPA来初始化数据库" class="headerlink" title="85.1 Initialize a Database Using JPA 通过JPA来初始化数据库"></a>85.1 Initialize a Database Using JPA 通过JPA来初始化数据库</h2><p>JPA有DDL语句生成的特征，这些可以在数据库启动时建立起来。这个通过额外的两个属性来控制：</p>
+<ul>
+<li><code>spring.jpa.generate-ddl</code> (boolean) 生成DDL的特征的开关，此与厂家无关。</li>
+<li><code>spring.jpa.hibernate.ddl-auto</code> (enum) 是Hibernate的特性，以更细粒度的方式控制。这个特性会在后续的指引中描述的更加清楚。</li>
+</ul>
+<h2 id="85-2-Initialize-a-Database-Using-Hibernate-通过使用Hibernate来初始化数据库"><a href="#85-2-Initialize-a-Database-Using-Hibernate-通过使用Hibernate来初始化数据库" class="headerlink" title="85.2 Initialize a Database Using Hibernate 通过使用Hibernate来初始化数据库"></a>85.2 Initialize a Database Using Hibernate 通过使用Hibernate来初始化数据库</h2><p>你可以明确地设置<code>spring.jpa.hibernate.ddl-auto</code>标准的Hibernate属性值用以<code>none</code>, <code>validate</code>, <code>update</code>, <code>create</code>和<code>create-drop</code>.<br>springboot根据你选择嵌入的数据库来选择默认值。如果是no schema 的数据库那么默认值是<code>create-drop</code>或是其他情况下用<code>none</code>.嵌入式数据库通过<code>Connection</code>类型来判断。<code>hsqldb</code>, <code>h2</code>, 和 <code>derby</code> 是嵌入式的，其他并不是。当你从内存数据库切换到真实数据库时，您需假象这些数据表应该存在与新的平台（真实数据库）。你即可以明确设置<code>ddl-auto</code>或是使用其他机制来初始化数据库。</p>
+<blockquote>
+<p>你可以通过激活<code>org.hibernate.SQL</code>来激活输出。如果你是在debug模式下，这个是自动打开的。</p>
+</blockquote>
+<p>另外，在根路径下的命名为import.sql的文件会在启动时被执行如果Hibernate回从头创建结构(如果<code>ddl-auto</code>设置成<code>create</code> 或 <code>create-drop</code>)。这个对于demos或是测试来说十分有用但如果你放在生产类路径上你需警惕。这是Hibernate的特性（与Spring无关）。</p>
+<h2 id="85-3-Initialize-a-Database-初始化数据库"><a href="#85-3-Initialize-a-Database-初始化数据库" class="headerlink" title="85.3 Initialize a Database 初始化数据库"></a>85.3 Initialize a Database 初始化数据库</h2><p>Springboot 可以自动创建结构（DDL脚本）来创建表并通过（DML脚本）。他从标准类路径的位置:<code>schema.sql</code> 和 <code>data.sql</code> 依次读取。另外Springboot也处理<code>schema-${platform}.sql</code> 和 <code>data-${platform}.sql</code>文件，<code>platform</code>根据<code>spring.datasource.platform</code>来判断。他允许你去切换数据库如果必要的话，例如，你可能回选择设置入厂商名称入(<code>hsqldb</code>, <code>h2</code>, <code>oracle</code>, <code>mysql</code>, <code>postgresql</code>等等)。</p>
+<blockquote>
+<p>Springboot为内嵌数据库自动创建了结构。这一特性可以通过<code>spring.datasource.initialization-mode</code>来定制。如果你想要总是初始化<code>DataSource</code>那么你需要使用<code>spring.datasource.initialization-mode=always</code></p>
+</blockquote>
+<p>默认，Springboot对于Spring JDBC 初始化工具开启快速出错的特性，这意味着，如果你的脚本导致了异常，应用也会启动失败。你可以通过调整这一行为通过<br><code>spring.datasource.continue-on-error</code>配置。</p>
+<blockquote>
+<p>在基于JPA的应用中，你可以选择让Hibernate来创建结构或使用<code>schema.sql</code>,但如果你不能俩者一起使用，确保禁用<code>spring.jpa.hibernate.ddl-auto</code>如果你使用了<code>schema.sql</code>。</p>
+</blockquote>
+<h2 id="85-4-Initialize-a-Spring-Batch-Database-初始化Spring批次数据库"><a href="#85-4-Initialize-a-Spring-Batch-Database-初始化Spring批次数据库" class="headerlink" title="85.4 Initialize a Spring Batch Database 初始化Spring批次数据库"></a>85.4 Initialize a Spring Batch Database 初始化Spring批次数据库</h2><p>如果你使用Spring Batch，他给主流的数据库平台做了预包装。Spring boot 可以检测你的数据库类型并在启动时执行那些脚本，如果你使用了嵌入式数据库，这也会默认开启。你可以对任意数据库类型来进行激活，如下配置：<br><code>spring.batch.initialize-schema=always</code><br>你可以关掉初始化通过设置<code>spring.batch.initialize-schema=never</code>。</p>
+<h2 id="85-5-Use-a-Higher-level-Database-Migration-Tool-使用高层的数据迁移工具"><a href="#85-5-Use-a-Higher-level-Database-Migration-Tool-使用高层的数据迁移工具" class="headerlink" title="85.5 Use a Higher-level Database Migration Tool 使用高层的数据迁移工具"></a>85.5 Use a Higher-level Database Migration Tool 使用高层的数据迁移工具</h2><p>Springboot 支持俩个高层的迁移工具 Flyway 和 Liquibase.</p>
+<h3 id="85-5-1-Execute-Flyway-Database-Migrations-on-Startup-在应用启动时执行Flyway数据库迁移"><a href="#85-5-1-Execute-Flyway-Database-Migrations-on-Startup-在应用启动时执行Flyway数据库迁移" class="headerlink" title="85.5.1 Execute Flyway Database Migrations on Startup 在应用启动时执行Flyway数据库迁移"></a>85.5.1 Execute Flyway Database Migrations on Startup 在应用启动时执行Flyway数据库迁移</h3><p>为了在应用启动时自动跑Flyway数据库迁移，你需要将<code>org.flywaydb:flyway-core</code>到类路径上。<br>这个迁移脚本有如下格式<code>V&lt;VERSION&gt;__&lt;NAME&gt;.sql</code>(通过<code>&lt;VERSION&gt;</code>是以下划线分开的版本，例如’1’,’2_1’)。默认他们会放在<code>classpath:db/migration</code>文件下，但你可以修改<code>spring.flyway.locations</code>的配置来修改默认路径。这个是一个逗号分割的列表<code>classpath:</code>or <code>filesystem:</code>位置。例如，如下配置即可以搜索默认的类路径位置可以用文件系统的<code>/opt/migration</code>文件夹。<br><code>spring.flyway.locations=classpath:db/migration,filesystem:/opt/migration</code><br>你可以增加一些特殊的如<code>{vendor}</code>占位符来使用特定厂商的脚本。假设如下:<br><code>spring.flyway.locations=classpath:db/migration/\{vendor}</code><br>而非使用<code>db/migration</code>,前者配置文件夹来使用数据库类型（如 <code>db/migration/mysql</code>) 。支持的库在<code>DatabaseDriver</code>枚举类中。</p>
+<p><code>FlywayProperties</code>提供了大多数Flyway的配置和一系列小的额外属性可以禁用迁移或关闭掉位置校验。如果你需要对配置进行更深的控制，考虑注册一个<code>FlywayConfigurationCustomizer</code>实例bean。</p>
+<p>Springboot 调用Flyway.migrate()来执行数据库的迁移，如果你想要更多控制，写一个类作为Bean<code>@Bean</code>实现<code>FlywayMigrationStrategy</code>.</p>
+<p>Flyway提供SQL和Java的回调方法。想使用基于SQL的回调，将所有回调脚本放置在<code>classpath:db/migration</code>文件夹下。想使用基于java的回调，创建一个或多个实例实现Callback接口.任何这样的实例都会注册到Flyway上。他们可以通过<code>@Order</code>或实现<code>Ordered</code>接口来排序。实例实现废弃的接口<code>FlywayCallback</code>也可以被检测到，然而他们不能和<code>Callback</code>实例一起使用。</p>
+<p>默认，Flyway自动装配数据源在你的上下文中且使用他们来进行迁移。如果你想要使用不同的数据源，你可以创建一个bean标记为<code>@FlywayDataSource</code>。如果你这样做的话，记住你需要将一个标记为<code>@Primary</code>。可替代的，你可以通过设定<code>spring.flyway.[url,user,password]</code>使用Flyway的本地数据库。随意设置<code>spring.flyway.url</code>或<code>spring.flyway.user</code>使得Flyway使用其自身的<code>DataSource</code>。如果这三个属性都没有被设置，其等值的<code>spring.datasource</code>属性将被使用。</p>
+<p>这里有一个<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.7.RELEASE/spring-boot-samples/spring-boot-sample-flyway" target="_blank" rel="noopener">Flyway</a>的样例，你可以查看其如何做到的。</p>
+<p>你可以使用Flyway来为特殊场景提供数据。例如，你可以方式特定测试的迁移在<code>src/test/resources</code>他们仅会在你的应用开始的时候。你也可以使用特定属性<code>spring.flyway.locations</code>配置来定制位置，明确迁移当特定的配置被激活。例如：在<code>application-dev.properties</code>,你可以指定如下配置：<br><code>spring.flyway.locations=classpath:/db/migration,classpath:/dev/db/migration</code><br>在装配时，<code>dev/db/migration</code>迁移仅会在dev属性被激活的情况下执行.</p>
+<h3 id="85-5-2-Execute-Liquibase-Database-Migrations-on-Startup-启动时使用Liquibase数据库迁移"><a href="#85-5-2-Execute-Liquibase-Database-Migrations-on-Startup-启动时使用Liquibase数据库迁移" class="headerlink" title="85.5.2 Execute Liquibase Database Migrations on Startup 启动时使用Liquibase数据库迁移"></a>85.5.2 Execute Liquibase Database Migrations on Startup 启动时使用Liquibase数据库迁移</h3><p>在应用启动时为了使应用启动时启动Liquibase数据库迁移,需要将<code>org.liquibase:liquibase-core</code>引入你的类路径下。</p>
+<p>默认，主要变更日志时从<code>db/changelog/db.changelog-master.yaml</code>这里读取，但是你可以通过使用<code>spring.liquibase.change-log</code>来改变位置。除了YAML，Liquibase也支持了JSON,XML和SQL改变日志格式。</p>
+<p>默认情况下，Liquibase在你的上下文装配(@Primary)数据源，并且使用其来做迁移。如果你需要使用不同的<code>DataSource</code>,你可以创建一个并把其标记为<code>@LiquibaseDataSource</code>。如果你这样做了，你需要两个不同的数据源，记住将另一个标记为<code>@Primary</code>。你也可以通过设置<code>spring.liquibase.[url,user,password]</code>的额外配置使用Liquibase本地数据源。如果这三个属性都没有被设置，其等值的<code>spring.datasource</code>属性将被使用。</p>
+<p>查看<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.7.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/liquibase/LiquibaseProperties.java" target="_blank" rel="noopener"><code>LiquibaseProperties</code></a>查看上下文可用的细节和默认的结构。</p>
+<p>如下有 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.7.RELEASE/spring-boot-samples/spring-boot-sample-liquibase" target="_blank" rel="noopener">Liquibase sample</a>来查看其是如何将所有都组装好的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/logging//" class="article-tag-list-link color3">logging</a>
+        			<a href="/categories/translation//" class="article-tag-list-link color2">translation</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/logging/spring//" class="article-tag-list-link color2">spring</a>
+        			<a href="/categories/translation/spring//" class="article-tag-list-link color2">spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/logging/spring/translation//" class="article-tag-list-link color2">translation</a>
+        			<a href="/categories/translation/spring/database//" class="article-tag-list-link color4">database</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://jomoon.github.io/2019/08/28/howto-database-initialization/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/27/map/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">map</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -238,10 +363,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
