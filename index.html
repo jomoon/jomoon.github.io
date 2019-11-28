@@ -156,6 +156,245 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-online-problem" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/26/online-problem/">online-problem</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/26/online-problem/" class="archive-article-date">
+  	<time datetime="2019-10-26T08:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="线上问题的记录"><a href="#线上问题的记录" class="headerlink" title="线上问题的记录"></a>线上问题的记录</h1><h2 id="某次更新后，线上经常cpu打满"><a href="#某次更新后，线上经常cpu打满" class="headerlink" title="某次更新后，线上经常cpu打满"></a>某次更新后，线上经常cpu打满</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install procps</span><br><span class="line"></span><br><span class="line">top</span><br><span class="line"></span><br><span class="line">top -H -p  <span class="variable">$&#123;pid&#125;</span></span><br><span class="line"></span><br><span class="line">jstack <span class="variable">$&#123;pid&#125;</span> | grep -A 10 0x5bd8</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线上//" class="article-tag-list-link color3">线上</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/线上/问题//" class="article-tag-list-link color3">问题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/26/online-problem/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-querydsl-4-1-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/09/querydsl-4-1-4/">querydsl-4.1.4 translation</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/09/querydsl-4-1-4/" class="archive-article-date">
+  	<time datetime="2019-10-09T02:29:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Introduction-介绍"><a href="#1-Introduction-介绍" class="headerlink" title="1. Introduction 介绍"></a>1. Introduction 介绍</h1><h2 id="1-1-Background-背景"><a href="#1-1-Background-背景" class="headerlink" title="1.1 Background 背景"></a>1.1 Background 背景</h2><p>Querydsl是为满足类型安全的HQL查询而孕育而生。HQL查询的需要大量的字符串拼接和结果集，这会使得代码非常难读。通过简单的字符串来生成的HQL构造的另一个问题是：域类型和属性不安全的引用。</p>
+<p>随着域对象类型安全带来大量的益处在软件开中。域改变是通过直接的映射和在查询构造中自动化完成使得查询构造变得更快更安全。</p>
+<p>Hibernate的HQL是Querydsl的第一目标语言，但现在已经支持了 JPA, JDO, JDBC, Lucene, Hibernate Search, MongoDB, Collections and RDFBean。</p>
+<h2 id="1-2-Principles-原则"><a href="#1-2-Principles-原则" class="headerlink" title="1.2 Principles 原则"></a>1.2 Principles 原则</h2><p>类型安全是Querydsl的核心，查询的构造是基于通过反射查询类型域类型的属性。方法的调用也是完全安全的。</p>
+<p>一致性是另一个重要的原则。查询路径和操作都是相同的基于同一个实现，查询接口也有相同的基础接口。</p>
+<p>为了保持Querydsl查询一致的表达性，表达类型可以去查看com.querydsl.core.Query, com.querydsl.core.Fetchable 和 com.querydsl.core.types.Expression这几个类.</p>
+<h1 id="2-Tutorials-教程"><a href="#2-Tutorials-教程" class="headerlink" title="2.Tutorials 教程"></a>2.Tutorials 教程</h1><p>我们提供以整合指导作为主要的Querydsl后端方式，而非一般的集成入门指南。</p>
+<h2 id="2-1-Querying-JPA-JPA查询"><a href="#2-1-Querying-JPA-JPA查询" class="headerlink" title="2.1 Querying JPA JPA查询"></a>2.1 Querying JPA JPA查询</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/09/querydsl-4-1-4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-LinkedBlockingQueue" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/02/LinkedBlockingQueue/">LinkedBlockingQueue</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/02/LinkedBlockingQueue/" class="archive-article-date">
+  	<time datetime="2019-10-02T07:58:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h1><h2 id="什么是LinkedBlockingQueue？"><a href="#什么是LinkedBlockingQueue？" class="headerlink" title="什么是LinkedBlockingQueue？"></a>什么是LinkedBlockingQueue？</h2><h3 id="LinkedBlockingQueue-1"><a href="#LinkedBlockingQueue-1" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h3><p>一个可选范围的BlockingQueue(阻塞队列)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Queue//" class="article-tag-list-link color1">Queue</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Queue/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/02/LinkedBlockingQueue/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-howto-database-initialization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
 
@@ -168,13 +407,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/howto-database-initialization/">howto-database-initialization</a>
+      <a class="article-title" href="/2019/09/28/howto-database-initialization/">howto-database-initialization</a>
     </h1>
   
 
         
-        <a href="/2019/08/28/howto-database-initialization/" class="archive-article-date">
-  	<time datetime="2019-08-28T01:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-28</time>
+        <a href="/2019/09/28/howto-database-initialization/" class="archive-article-date">
+  	<time datetime="2019-09-28T01:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
 </a>
         
       </header>
@@ -246,7 +485,79 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/28/howto-database-initialization/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/28/howto-database-initialization/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-tranlation-overview" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+
+    <!-- 目录内容 -->
+         
+  <!-- 目录内容结束 -->
+
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/30/tranlation-overview/">翻译总览</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/30/tranlation-overview/" class="archive-article-date">
+  	<time datetime="2019-08-30T11:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><a>translation /guice-translation</a></li>
+<li><a href="https://jomoon.github.io/guice-translation/Guice-start.html">开始篇</a></li>
+<li><a href="https://jomoon.github.io/guice-translation/Guice-Bindings.html">绑定篇</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/30/tranlation-overview/">展开全文 >></a>
         </p>
       
 
@@ -557,162 +868,6 @@
 
 
   
-    <article id="post-online-problem" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-
-    <!-- 目录内容 -->
-         
-  <!-- 目录内容结束 -->
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/26/online-problem/">online-problem</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/26/online-problem/" class="archive-article-date">
-  	<time datetime="2019-08-26T08:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="线上问题的记录"><a href="#线上问题的记录" class="headerlink" title="线上问题的记录"></a>线上问题的记录</h1><h2 id="某次更新后，线上经常cpu打满"><a href="#某次更新后，线上经常cpu打满" class="headerlink" title="某次更新后，线上经常cpu打满"></a>某次更新后，线上经常cpu打满</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get install procps</span><br><span class="line"></span><br><span class="line">top</span><br><span class="line"></span><br><span class="line">top -H -p  <span class="variable">$&#123;pid&#125;</span></span><br><span class="line"></span><br><span class="line">jstack <span class="variable">$&#123;pid&#125;</span> | grep -A 10 0x5bd8</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/线上//" class="article-tag-list-link color3">线上</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/线上/问题//" class="article-tag-list-link color3">问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/26/online-problem/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-querydsl-4-1-4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-
-    <!-- 目录内容 -->
-         
-  <!-- 目录内容结束 -->
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/09/querydsl-4-1-4/">querydsl-4.1.4 translation</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/09/querydsl-4-1-4/" class="archive-article-date">
-  	<time datetime="2019-08-09T02:29:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-Introduction-介绍"><a href="#1-Introduction-介绍" class="headerlink" title="1. Introduction 介绍"></a>1. Introduction 介绍</h1><h2 id="1-1-Background-背景"><a href="#1-1-Background-背景" class="headerlink" title="1.1 Background 背景"></a>1.1 Background 背景</h2><p>Querydsl是为满足类型安全的HQL查询而孕育而生。HQL查询的需要大量的字符串拼接和结果集，这会使得代码非常难读。通过简单的字符串来生成的HQL构造的另一个问题是：域类型和属性不安全的引用。</p>
-<p>随着域对象类型安全带来大量的益处在软件开中。域改变是通过直接的映射和在查询构造中自动化完成使得查询构造变得更快更安全。</p>
-<p>Hibernate的HQL是Querydsl的第一目标语言，但现在已经支持了 JPA, JDO, JDBC, Lucene, Hibernate Search, MongoDB, Collections and RDFBean。</p>
-<h2 id="1-2-Principles-原则"><a href="#1-2-Principles-原则" class="headerlink" title="1.2 Principles 原则"></a>1.2 Principles 原则</h2><p>类型安全是Querydsl的核心，查询的构造是基于通过反射查询类型域类型的属性。方法的调用也是完全安全的。</p>
-<p>一致性是另一个重要的原则。查询路径和操作都是相同的基于同一个实现，查询接口也有相同的基础接口。</p>
-<p>为了保持Querydsl查询一致的表达性，表达类型可以去查看com.querydsl.core.Query, com.querydsl.core.Fetchable 和 com.querydsl.core.types.Expression这几个类.</p>
-<h1 id="2-Tutorials-教程"><a href="#2-Tutorials-教程" class="headerlink" title="2.Tutorials 教程"></a>2.Tutorials 教程</h1><p>我们提供以整合指导作为主要的Querydsl后端方式，而非一般的集成入门指南。</p>
-<h2 id="2-1-Querying-JPA-JPA查询"><a href="#2-1-Querying-JPA-JPA查询" class="headerlink" title="2.1 Querying JPA JPA查询"></a>2.1 Querying JPA JPA查询</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/09/querydsl-4-1-4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-log-error" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
 
@@ -773,78 +928,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/06/log-error/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-tranlation-overview" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-
-    <!-- 目录内容 -->
-         
-  <!-- 目录内容结束 -->
-
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/30/tranlation-overview/">翻译总览</a>
-    </h1>
-  
-
-        
-        <a href="/2019/07/30/tranlation-overview/" class="archive-article-date">
-  	<time datetime="2019-07-30T11:28:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><a href="https://jomoon.github.io/guice-translation/Guice-motivation.html">动机篇</a></li>
-<li><a href="https://jomoon.github.io/guice-translation/Guice-start.html">开始篇</a></li>
-<li><a href="https://jomoon.github.io/guice-translation/Guice-Bindings.html">绑定篇</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/30/tranlation-overview/">展开全文 >></a>
         </p>
       
 
